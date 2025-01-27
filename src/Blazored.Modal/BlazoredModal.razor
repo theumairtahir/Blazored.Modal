@@ -146,15 +146,15 @@
         _haveActiveModals = false;
         if (_styleFunctions is not null)
         {
-      try
-      {
-            await _styleFunctions.InvokeVoidAsync("removeBodyStyle");
+            try
+            {
+                await _styleFunctions.InvokeVoidAsync("removeBodyStyle");
+            }
+            catch (ObjectDisposedException)
+            {
+              // If the we're working in hybrid scenario for Blazor Web App, where JsRuntime is not available, we don't need to do anything
+            }
         }
-      catch (ObjectDisposedException)
-      {
-        // If the we're working in hybrid scenario for Blazor Web App, where JsRuntime is not available, we don't need to do anything
-      }
-    }
     }
 
     async ValueTask IAsyncDisposable.DisposeAsync()
